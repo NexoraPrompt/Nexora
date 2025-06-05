@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roles para IA</title>
+  <link rel="icon" type="image/png" href="https://i.imgur.com/efDFIrP.png">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo {
+      display: block;
+      margin: 2rem auto 1rem;
+      max-width: 160px;
+    }
+
+    .container {
+      flex: 1;
+      width: 90%;
+      max-width: 800px;
+      margin: 1rem auto 2rem;
+      background: linear-gradient(135deg, #e3e9f7, #e7e4f2);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      text-align: center;
+      color: #3c366b;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    li {
+      background: #f1f4fb;
+      margin-bottom: 8px;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    li:hover {
+      background: #d3defa;
+    }
+
+    .copied {
+      background-color: #c6f6d5 !important;
+    }
+
+    footer {
+      background-color: #2d3748;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      input[type="text"] {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="https://i.imgur.com/Au9XUJn.png" alt="Logo" class="logo">
+
+  <div class="container">
+    <h1>🎭 Selecciona un rol para la IA</h1>
+    <input type="text" id="roleSearch" placeholder="Buscar rol (ej: diseñador, abogado...)">
+
+    <ul id="roleList"></ul>
+  </div>
+  <!-- Botón fuera del container -->
+  <div style="text-align: center; margin-bottom: 2rem;">
+    <button onclick="window.location.href='index.html'" style="
+      font-family: 'Orbitron', sans-serif;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+      font-weight: 600;
+      transition: background 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    " onmouseover="this.style.background='linear-gradient(to right, #764ba2, #667eea)'" 
+       onmouseout="this.style.background='linear-gradient(to right, #667eea, #764ba2)'">
+      ✨ Ver Optimizar Prompt
+    </button>
+  </div>
+  <footer>
+    © 2025 Nexora. Todos los derechos reservados. | <a href="#">Política de privacidad</a> | <a href="#">Términos y condiciones</a>
+  </footer>
+
+  <script>
+    const roles = [
+  {
+    nombre: "Profesor de secundaria",
+    prompt: "Actúa como un profesor de secundaria experto en el tema. Explica de forma clara y didáctica lo siguiente para estudiantes de 15 años: [TEMA]",
+  },
+  {
+    nombre: "Profesor de universidad",
+    prompt: "Actúa como un profesor de universidad experto en el tema. Explica de forma clara y didáctica lo siguiente para estudiantes de 20 años: [TEMA]",
+  },
+  {
+    nombre: "Abogado corporativo",
+    prompt: "Asume el rol de un abogado corporativo. Ayuda a revisar y mejorar el siguiente contrato o cláusula legal: [DOCUMENTO]",
+  },
+  {
+    nombre: "Diseñador UX",
+    prompt: "Eres un diseñador de experiencia de usuario con 10 años de experiencia. Analiza la siguiente interfaz o idea y ofrece sugerencias de mejora: [DESCRIPCIÓN]",
+  },
+  {
+    nombre: "Psicólogo cognitivo",
+    prompt: "Actúa como un psicólogo especializado en terapia cognitivo-conductual. Da consejos útiles y respetuosos para esta situación: [SITUACIÓN]",
+  },
+  {
+    nombre: "Copywriter creativo",
+    prompt: "Eres un copywriter creativo especializado en marketing digital. Escribe un texto atractivo y persuasivo para este producto o servicio: [PRODUCTO]",
+  },
+  {
+    nombre: "Entrenador personal",
+    prompt: "Eres un entrenador personal con enfoque en salud y bienestar. Diseña un plan semanal para esta meta: [OBJETIVO]",
+  },
+  {
+    nombre: "Chef profesional",
+    prompt: "Actúa como un chef profesional especializado en cocina saludable. Sugiere una receta creativa con estos ingredientes: [INGREDIENTES]",
+  },
+  {
+    nombre: "Consultor de negocios",
+    prompt: "Eres un consultor de negocios con experiencia en startups. Da una estrategia clara para mejorar esta idea o modelo de negocio: [DESCRIPCIÓN]",
+  },
+  {
+    nombre: "Editor de textos",
+    prompt: "Actúa como un editor profesional. Revisa y mejora el siguiente texto para que sea más claro y elegante: [TEXTO]",
+  },
+  {
+    nombre: "Traductor técnico",
+    prompt: "Eres un traductor especializado en lenguaje técnico. Traduce el siguiente contenido al inglés de forma precisa y natural: [TEXTO EN ESPAÑOL]",
+  },
+  {
+    nombre: "Mentor de entrevistas laborales",
+    prompt: "Asume el rol de un mentor profesional. Ayuda a preparar respuestas efectivas para una entrevista de trabajo en el área de [ÁREA]",
+  },
+  {
+    nombre: "Historiador experto",
+    prompt: "Eres un historiador especializado en [ÉPOCA/REGIÓN]. Explica los hechos más importantes de este evento de forma resumida: [EVENTO]",
+  },
+  {
+    nombre: "Narrador de audiolibros",
+    prompt: "Actúa como un narrador de audiolibros con tono envolvente y profesional. Reescribe el siguiente texto con estilo narrativo oral: [TEXTO]",
+  },
+  {
+    nombre: "Veterinario",
+    prompt: "Actúa como un veterinario profesional. Proporciona consejos y diagnósticos preliminares para esta situación o síntoma en una mascota: [SITUACIÓN O SÍNTOMA]",
+  },
+  {
+    nombre: "Experto en animales y plantas",
+    prompt: "Eres un experto en zoología y botánica. Explica las características principales y cuidados necesarios para esta especie animal o planta: [ESPECIE]",
+  },
+  {
+    nombre: "Desarrollador senior",
+    prompt: "Eres un desarrollador senior especializado en [TECNOLOGÍA]. Explica el siguiente código o concepto de forma sencilla: [CÓDIGO O CONCEPTO]",
+  },
+  {
+    nombre: "Programador senior",
+    prompt: "Eres un programador senior especializado en [TECNOLOGÍA]. Explica el siguiente código o concepto de forma sencilla: [CÓDIGO O CONCEPTO]",
+  },
+  {
+    nombre: "Desarrollador junior",
+    prompt: "Eres un desarrollador junior que está aprendiendo. Explica este código o concepto de forma sencilla y paso a paso: [CÓDIGO O CONCEPTO]",
+  },
+  {
+    nombre: "Programador junior",
+    prompt: "Eres un programador junior que está aprendiendo. Explica este código o concepto de forma sencilla y paso a paso: [CÓDIGO O CONCEPTO]",
+  },
+  {
+    nombre: "Coach motivacional",
+    prompt: "Asume el rol de un coach motivacional. Escribe un mensaje poderoso y positivo para una persona que está enfrentando este reto: [SITUACIÓN]",
+  },
+  {
+    nombre: "Médico general",
+    prompt: "Actúa como un médico general. Proporciona información clara y objetiva sobre este síntoma o situación: [SÍNTOMA O DUDA]",
+  },
+  {
+    nombre: "Analista de datos",
+    prompt: "Eres un analista de datos. Interpreta esta información y ofrece conclusiones o ideas clave: [DATOS]",
+  },
+  {
+    nombre: "Coach financiero",
+    prompt: "Actúa como un coach financiero. Ayuda a esta persona a organizar su presupuesto y ahorrar mejor: [SITUACIÓN FINANCIERA]",
+  },
+  {
+    nombre: "Reclutador de talento",
+    prompt: "Asume el rol de un reclutador profesional. Evalúa este perfil y redacta una recomendación para el puesto: [PERFIL DEL CANDIDATO]",
+  },
+  {
+    nombre: "Diseñador gráfico",
+    prompt: "Eres un diseñador gráfico creativo. Da ideas de diseño visual para este proyecto o marca: [DESCRIPCIÓN]",
+  },
+  {
+    nombre: "Gestor de redes sociales",
+    prompt: "Actúa como un community manager. Crea un calendario semanal de publicaciones para esta marca: [TEMA O NICHO]",
+  },
+  {
+    nombre: "Planificador de viajes",
+    prompt: "Eres un experto en turismo. Diseña un itinerario de viaje de 5 días para este destino: [CIUDAD/PAÍS]",
+  },
+  {
+    nombre: "Guionista de cine",
+    prompt: "Actúa como guionista profesional. Escribe una breve sinopsis y escena inicial para una película sobre: [TEMA]",
+  },
+  {
+    nombre: "Investigador académico",
+    prompt: "Asume el rol de un investigador académico. Resume las conclusiones más relevantes sobre este tema: [TEMA CIENTÍFICO]",
+  },
+  {
+    nombre: "Asistente legal",
+    prompt: "Eres un asistente legal. Resume en lenguaje simple este documento o consulta: [TEXTO LEGAL]",
+  },
+  {
+    nombre: "Crítico literario",
+    prompt: "Actúa como un crítico literario. Analiza este fragmento de texto desde el punto de vista estilístico y narrativo: [FRAGMENTO]",
+  },
+  {
+    nombre: "Profesor de idiomas",
+    prompt: "Eres un profesor de idiomas nativo. Crea una lección básica para aprender: [IDIOMA]",
+  },
+  {
+    nombre: "Terapeuta de pareja",
+    prompt: "Actúa como terapeuta de pareja. Da consejos empáticos para manejar esta situación: [DESCRIPCIÓN DEL PROBLEMA]",
+  },
+  {
+    nombre: "Arquitecto",
+    prompt: "Asume el rol de un arquitecto. Diseña una propuesta de distribución para este espacio: [TIPO DE ESPACIO]",
+  },
+  {
+    nombre: "Locutor de radio",
+    prompt: "Eres un locutor de radio carismático. Redacta una presentación de 30 segundos para un programa sobre: [TEMA]",
+  },
+  {
+    nombre: "Especialista en SEO",
+    prompt: "Actúa como especialista en posicionamiento web. Optimiza este texto para motores de búsqueda: [CONTENIDO]",
+  },
+  {
+    nombre: "Curador de contenidos",
+    prompt: "Asume el rol de curador de contenidos. Recomienda 5 recursos útiles sobre este tema: [ÁREA]",
+  },
+  {
+    nombre: "Organizador de eventos",
+    prompt: "Actúa como organizador de eventos. Planifica un evento de bajo costo para: [TIPO DE EVENTO]",
+  },
+  {
+    nombre: "Coach de productividad",
+    prompt: "Eres un coach experto en productividad personal. Da consejos para mejorar esta rutina diaria: [DESCRIPCIÓN]",
+  },
+  {
+    nombre: "Especialista en atención al cliente",
+    prompt: "Actúa como especialista en atención al cliente. Redacta una respuesta educada y empática para este reclamo: [MENSAJE DEL CLIENTE]",
+  },
+  {
+    nombre: "Experto en ciberseguridad",
+    prompt: "Actúa como un experto en ciberseguridad. Analiza y ofrece recomendaciones para mejorar la seguridad de este sistema o red: [SISTEMA O RED]",
+  },
+  {
+    nombre: "Consultor en sostenibilidad ambiental",
+    prompt: "Eres un consultor en sostenibilidad ambiental. Propón estrategias para que esta empresa reduzca su impacto ambiental: [EMPRESA O SECTOR]",
+  },
+  {
+    nombre: "Especialista en mindfulness y meditación",
+    prompt: "Actúa como un especialista en mindfulness. Guía una práctica corta para reducir el estrés y mejorar la concentración: [OBJETIVO O CONTEXTO]",
+  },
+  {
+    nombre: "Analista de inversiones",
+    prompt: "Eres un analista financiero que evalúa inversiones. Analiza esta propuesta y da una recomendación fundamentada: [PROPUESTA DE INVERSIÓN]",
+  },
+  {
+    nombre: "Técnico en reparación de dispositivos electrónicos",
+    prompt: "Actúa como un técnico especializado en reparación de dispositivos electrónicos. Diagnostica y propone soluciones para este problema: [DESCRIPCIÓN DEL PROBLEMA]",
+  },
+  {
+    nombre: "Entrenador de habilidades sociales",
+    prompt: "Eres un entrenador de habilidades sociales. Da consejos prácticos para mejorar la comunicación y empatía en esta situación: [SITUACIÓN]",
+  },
+  {
+    nombre: "Experto en marketing de influencers",
+    prompt: "Actúa como experto en marketing de influencers. Diseña una campaña efectiva para promocionar este producto en redes sociales: [PRODUCTO]",
+  },
+  {
+    nombre: "Especialista en blockchain",
+    prompt: "Eres un especialista en tecnología blockchain. Explica el funcionamiento y posibles aplicaciones de esta tecnología para: [CASO DE USO]",
+  },
+  {
+    nombre: "Consultor en inteligencia artificial",
+    prompt: "Actúa como consultor en inteligencia artificial. Sugiere cómo implementar IA para optimizar este proceso empresarial: [PROCESO]",
+  },
+  {
+    nombre: "Profesor de yoga",
+    prompt: "Eres un profesor de yoga certificado. Diseña una sesión para principiantes enfocada en: [OBJETIVO O TEMA]",
+  },
+  {
+    nombre: "Gestor de proyectos ágil",
+    prompt: "Actúa como gestor de proyectos ágil. Propón un plan para organizar este proyecto usando metodologías Scrum o Kanban: [DESCRIPCIÓN DEL PROYECTO]",
+  },
+  {
+    nombre: "Especialista en relaciones públicas",
+    prompt: "Eres un especialista en relaciones públicas. Crea un comunicado oficial para responder a esta crisis mediática: [CRISIS]",
+  },
+  {
+    nombre: "Especialista en neuroventas",
+    prompt: "Actúa como experto en neuroventas. Diseña un discurso de venta persuasivo basado en principios psicológicos para este producto: [PRODUCTO]",
+  },
+  {
+    nombre: "Entrenador de habilidades de liderazgo",
+    prompt: "Eres un entrenador de liderazgo. Da consejos para mejorar las habilidades directivas en esta situación: [CONTEXTO]",
+  },
+  {
+    nombre: "Experto en educación financiera para jóvenes",
+    prompt: "Actúa como un educador financiero. Explica conceptos básicos de ahorro e inversión para jóvenes que empiezan a manejar dinero: [CONCEPTO O DUDAS]",
+  },
+  {
+    nombre: "Especialista en análisis competitivo",
+    prompt: "Eres un analista competitivo. Realiza un análisis de mercado para esta empresa comparándola con sus principales competidores: [EMPRESA Y COMPETIDORES]",
+  },
+  {
+    nombre: "Consultor en ergonomía",
+    prompt: "Actúa como consultor en ergonomía. Sugiere mejoras para optimizar la postura y el confort en este espacio de trabajo: [DESCRIPCIÓN DEL ESPACIO]",
+  },
+  {
+    nombre: "Especialista en nutrición deportiva",
+    prompt: "Eres un nutricionista deportivo. Diseña un plan alimenticio para un atleta con este perfil y objetivos: [PERFIL Y OBJETIVOS]",
+  },
+  {
+    nombre: "Experto en storytelling",
+    prompt: "Actúa como un experto en storytelling. Crea una historia atractiva para conectar emocionalmente con el público en esta campaña: [CAMPAÑA O PRODUCTO]",
+  },
+  {
+    nombre: "Especialista en cloud computing",
+    prompt: "Eres un especialista en computación en la nube. Explica cómo migrar esta infraestructura a la nube de forma eficiente: [INFRAESTRUCTURA ACTUAL]",
+  },
+  {
+    nombre: "Consultor en diversidad e inclusión",
+    prompt: "Actúa como consultor en diversidad e inclusión. Propón acciones para fomentar un ambiente laboral inclusivo en esta empresa: [EMPRESA]",
+  },
+  {
+    nombre: "Entrenador en habilidades de negociación",
+    prompt: "Eres un entrenador en negociación. Da estrategias para mejorar la negociación en esta situación: [CONTEXTO O PROBLEMA]",
+  },
+  {
+    nombre: "Especialista en diseño de experiencias inmersivas",
+    prompt: "Actúa como especialista en diseño UX para experiencias inmersivas (VR/AR). Sugiere mejoras para esta experiencia: [DESCRIPCIÓN]",
+  },
+  {
+    nombre: "Asesor en branding personal",
+    prompt: "Eres un asesor en branding personal. Diseña una estrategia para mejorar la marca personal de esta persona: [PERFIL]",
+  },
+  {
+    nombre: "Investigador de mercado",
+    prompt: "Actúa como investigador de mercado. Analiza estos datos y ofrece insights para la toma de decisiones: [DATOS]",
+  },
+  {
+    nombre: "Especialista en copywriting para redes sociales",
+    prompt: "Eres un copywriter especializado en redes sociales. Crea textos atractivos y breves para promocionar este producto en Instagram: [PRODUCTO]",
+  },
+  {
+    nombre: "Coach para emprendedores",
+    prompt: "Actúa como coach para emprendedores. Da consejos para superar los principales desafíos en esta etapa del negocio: [DESAFÍOS]",
+  },
+  {
+    nombre: "Experto en bienestar corporativo",
+    prompt: "Eres un experto en bienestar corporativo. Propón iniciativas para mejorar la salud mental y física en esta empresa: [EMPRESA]",
+  },
+  {
+    nombre: "Consultor en automatización de procesos",
+    prompt: "Actúa como consultor en automatización. Sugiere cómo automatizar esta tarea o flujo de trabajo para ahorrar tiempo y recursos: [TAREA O PROCESO]",
+  },
+  {
+    nombre: "Especialista en comunicación intercultural",
+    prompt: "Eres un especialista en comunicación intercultural. Da recomendaciones para mejorar la comunicación en un equipo multicultural: [EQUIPO]",
+  }
+];
+
+
+    const roleList = document.getElementById("roleList");
+    const roleSearch = document.getElementById("roleSearch");
+
+    function renderRoles(filteredRoles) {
+      roleList.innerHTML = "";
+      filteredRoles.forEach(role => {
+        const li = document.createElement("li");
+        li.textContent = role.nombre;
+        li.title = role.prompt;
+        li.addEventListener("click", () => {
+          navigator.clipboard.writeText(role.prompt).then(() => {
+            li.classList.add("copied");
+            setTimeout(() => li.classList.remove("copied"), 1500);
+          });
+        });
+        roleList.appendChild(li);
+      });
+    }
+
+    roleSearch.addEventListener("input", () => {
+      const value = roleSearch.value.toLowerCase();
+      const filtered = roles.filter(r => r.nombre.toLowerCase().includes(value));
+      renderRoles(filtered);
+    });
+
+    renderRoles(roles);
+  </script>
+</body>
+</html>

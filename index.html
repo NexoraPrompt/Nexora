@@ -38,7 +38,7 @@
     .logo {
       display: block;
       margin: 2rem auto 1rem;
-      max-width: 160px; /* Aumentado */
+      max-width: 160px;
     }
 
     .container {
@@ -183,8 +183,28 @@
     </div>
   </div>
 
+  <!-- Botón fuera del container -->
+  <div style="text-align: center; margin-bottom: 2rem;">
+    <button onclick="window.location.href='roles.html'" style="
+      font-family: 'Orbitron', sans-serif;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+      font-weight: 600;
+      transition: background 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    " onmouseover="this.style.background='linear-gradient(to right, #764ba2, #667eea)'" 
+       onmouseout="this.style.background='linear-gradient(to right, #667eea, #764ba2)'">
+      🎭 Ver Roles de IA
+    </button>
+  </div>
+
   <footer>
-    © 2025 TuMarca. Todos los derechos reservados. | <a href="#">Política de privacidad</a> | <a href="#">Términos y condiciones</a>
+    © 2025 Nexora. Todos los derechos reservados. | <a href="#">Política de privacidad</a> | <a href="#">Términos y condiciones</a>
   </footer>
 </body>
 </html>
