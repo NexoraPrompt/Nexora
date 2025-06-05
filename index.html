@@ -1,28 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Optimiza tu Prompt</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Página Principal - Optimiza tu Prompt</title>
 
-  <!-- Logo de pestaña (favicon) -->
-  <link rel="icon" type="image/png" href="https://i.imgur.com/efDFIrP.png">
-
-  <!-- Open Graph / Redes sociales -->
-  <meta property="og:title" content="Optimiza tu Prompt">
-  <meta property="og:image" content="https://i.imgur.com/efDFIrP.png">
-  <meta property="og:type" content="website">
-  <meta property="og:description" content="Mejora tus prompts de forma rápida con audio o texto.">
-  <meta property="og:url" content="">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Optimiza tu Prompt">
-  <meta name="twitter:image" content="https://i.imgur.com/efDFIrP.png">
-  <meta name="twitter:description" content="Mejora tus prompts fácilmente.">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://i.imgur.com/efDFIrP.png" />
 
   <!-- Fuente -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
     body {
@@ -33,85 +20,81 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
     }
 
     .logo {
-      display: block;
-      margin: 2rem auto 1rem;
-      max-width: 160px;
-    }
-
-    .container {
-      flex: 1;
-      width: 90%;
-      max-width: 800px;
-      margin: 1rem auto 2rem;
-      background: linear-gradient(135deg, #e3e9f7, #e7e4f2);
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-
-    h1 {
-      text-align: center;
-      color: #3c366b;
-      font-weight: 700;
-      font-size: 1.8rem;
-    }
-
-    .content-group {
-      width: 100%;
+      width: 60%;
+      max-width: 420px;
+      height: auto;
+      margin: 0 0 3rem 0;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 0.2s;
     }
 
     .button-row {
       display: flex;
-      gap: 1rem;
-      margin: 1rem 0;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      width: 90%;
+      max-width: 600px;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 0.8s;
     }
 
     .button-row button {
-      font-family: 'Orbitron', sans-serif;
       flex: 1;
-      padding: 12px;
-      font-size: 16px;
-      cursor: pointer;
+      padding: 14px 0;
+      font-size: 18px;
+      font-weight: 700;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
+      cursor: pointer;
       background: linear-gradient(to right, #667eea, #764ba2);
       color: white;
-      font-weight: 600;
-      transition: background 0.3s;
+      transition: background 0.3s ease;
+      font-family: 'Orbitron', sans-serif;
+      position: relative;
     }
 
     .button-row button:hover {
       background: linear-gradient(to right, #764ba2, #667eea);
     }
 
-    textarea {
-      width: 100%;
-      height: 120px;
-      margin-bottom: 1rem;
-      padding: 12px;
-      font-size: 15px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      resize: vertical;
-      background-color: #f9fdfb;
-      font-family: 'Orbitron', sans-serif;
-      box-sizing: border-box;
+    .button-row button:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      font-size: 14px;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 10;
     }
 
-    h2 {
-      margin-top: 1.5rem;
-      color: #3c366b;
-      font-weight: 600;
-    }
-
-    #durationDisplay {
-      text-align: center;
-      font-size: 1.2rem;
-      color: #3c366b;
-      margin-top: 0.5rem;
+    .button-row button:hover::before {
+      content: "";
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 6px;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
+      z-index: 10;
     }
 
     footer {
@@ -120,6 +103,10 @@
       text-align: center;
       padding: 1rem;
       font-size: 14px;
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
     }
 
     footer a {
@@ -131,7 +118,6 @@
       text-decoration: underline;
     }
 
-    /* Media Queries para móvil */
     @media (max-width: 480px) {
       .button-row {
         flex-direction: column;
@@ -140,396 +126,27 @@
       .button-row button {
         width: 100%;
       }
+    }
 
-      h1 {
-        font-size: 1.6rem;
-      }
-
-      h2 {
-        font-size: 1.1rem;
-      }
-
-      textarea {
-        font-size: 15px;
-        min-height: 110px;
-        padding: 12px 14px;
-      }
-
-      .container {
-        padding: 1rem 1rem 1.5rem;
-        border-radius: 16px;
-      }
-
-      #durationDisplay {
-        font-size: 1rem;
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   </style>
 </head>
 <body>
-  <img src="https://i.imgur.com/Au9XUJn.png" alt="Logo" class="logo">
+  <img src="https://i.imgur.com/Au9XUJn.png" alt="Logo" class="logo" />
 
-  <div class="container">
-    <h1>Optimiza tu Prompt</h1>
-    <div class="content-group">
-      <div class="button-row">
-        <button id="recordButton">🎤 Grabar Audio</button>
-        <button id="optimizeButton">✨ Optimizar Prompt</button>
-      </div>
-      <div id="durationDisplay">⏱️ Duración: 0s</div>
-      <textarea id="inputText" placeholder="Aquí aparecerá la transcripción o escribe tu texto..."></textarea>
-      <h2>🔧 Prompt optimizado:</h2>
-      <textarea id="optimizedPrompt" readonly placeholder="Aquí se mostrará el prompt mejorado..."></textarea>
-    </div>
-  </div>
-
-  <!-- Botón fuera del container -->
-  <div style="text-align: center; margin-bottom: 2rem;">
-    <button onclick="window.location.href='roles.html'" style="
-      font-family: 'Orbitron', sans-serif;
-      padding: 12px 24px;
-      font-size: 16px;
-      cursor: pointer;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(to right, #667eea, #764ba2);
-      color: white;
-      font-weight: 600;
-      transition: background 0.3s;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    " onmouseover="this.style.background='linear-gradient(to right, #764ba2, #667eea)'" 
-       onmouseout="this.style.background='linear-gradient(to right, #667eea, #764ba2)'">
-      🎭 Ver Roles de IA
-    </button>
+  <div class="button-row">
+    <button data-tooltip="Optimiza y mejora tus prompts de texto o audio" onclick="location.href='optimizar.html'">✨ Optimizar Prompt</button>
+    <button data-tooltip="Elige un rol específico para entrenar a la IA" onclick="location.href='roles.html'">🎭 Elegir Rol</button>
+    <button data-tooltip="recomendación de las mejores IAs para cada tarea" onclick="location.href='ranking.html'">🏆Mejores IAs</button>
   </div>
 
   <footer>
     © 2025 Nexora. Todos los derechos reservados. | <a href="#">Política de privacidad</a> | <a href="#">Términos y condiciones</a>
   </footer>
-</body>
-</html>
-
-  <script>
-  const recordButton = document.getElementById("recordButton");
-  const optimizeButton = document.getElementById("optimizeButton");
-  const inputText = document.getElementById("inputText");
-  const optimizedPrompt = document.getElementById("optimizedPrompt");
-  const durationDisplay = document.getElementById("durationDisplay");
-
-  let recognition;
-  let isRecording = false;
-  let startTime = 0;
-  let durationInterval;
-
-  if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    recognition = new SpeechRecognition();
-    recognition.lang = 'es-ES';
-    recognition.continuous = true;
-    recognition.interimResults = false;
-
-    recognition.onresult = (event) => {
-      let transcript = "";
-      for (let i = event.resultIndex; i < event.results.length; ++i) {
-        transcript += event.results[i][0].transcript + " ";
-      }
-      inputText.value += transcript.trim() + " ";
-      optimizePrompt(inputText.value);
-    };
-
-    recognition.onerror = (event) => console.error("Error de reconocimiento:", event.error);
-    recognition.onend = () => { if (isRecording) recognition.start(); };
-
-    function startRecording() {
-      isRecording = true;
-      inputText.value = "";
-      optimizedPrompt.value = "";
-      recordButton.textContent = "⏹️ Detener";
-      startTime = Date.now();
-      durationInterval = setInterval(() => {
-        const seconds = Math.floor((Date.now() - startTime) / 1000);
-        durationDisplay.textContent = `⏱️ Duración: ${seconds}s`;
-      }, 1000);
-      recognition.start();
-    }
-
-    function stopRecording() {
-      isRecording = false;
-      recordButton.textContent = "🎤 Grabar Audio";
-      clearInterval(durationInterval);
-      durationDisplay.textContent = "⏱️ Duración: 0s";
-      recognition.stop();
-    }
-
-    recordButton.addEventListener("click", () => {
-      isRecording ? stopRecording() : startRecording();
-    });
-  } else {
-    alert("Tu navegador no soporta reconocimiento de voz.");
-    recordButton.disabled = true;
-  }
-
-  optimizeButton.addEventListener("click", () => {
-    const input = inputText.value.trim();
-    if (input.length === 0) {
-      optimizedPrompt.value = "Por favor, escribe o graba un texto primero.";
-      return;
-    }
-    optimizedPrompt.value = generateOptimizedPrompt(input);
-  });
-
-  function optimizePrompt(rawText) {
-    const cleaned = rawText.trim();
-    if (cleaned.length === 0) return;
-    optimizedPrompt.value = generateOptimizedPrompt(cleaned);
-  }
-
-  function generateOptimizedPrompt(text) {
-    const normalize = (str) =>
-      str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
-
-    const adjectiveExpansions = {
-  // Positivos
-  "bonita": "visualmente atractiva",
-  "hermosa": "visual y estéticamente encantadora",
-  "preciosa": "de gran belleza visual",
-  "moderna": "actual, con un diseño innovador",
-  "vanguardista": "de estilo adelantado a su tiempo",
-  "limpia": "minimalista y sin elementos innecesarios",
-  "elegante": "con una estética refinada y sofisticada",
-  "dinamica": "interactiva, con elementos visuales en movimiento",
-  "atractiva": "que capta la atención con un estilo llamativo",
-  "simple": "intuitiva y fácil de entender",
-  "sencilla": "sin complicaciones, clara y funcional",
-  "oscura": "en modo oscuro con buen contraste",
-  "clara": "con buena iluminación y legibilidad",
-  "impactante": "que cause una impresión fuerte y memorable",
-  "efectiva": "que cumple su propósito de forma clara",
-  "eficiente": "funciona bien con recursos mínimos",
-  "divertida": "con una apariencia alegre y animada",
-  "luminosa": "brillante y acogedora",
-  "profesional": "adecuada para un entorno formal",
-  "seria": "sobria, bien estructurada",
-  "accesible": "usable por personas con discapacidades",
-  "inspiradora": "que estimula la creatividad o motivación",
-  "creativa": "original y expresiva",
-  "artística": "con valor estético o expresivo",
-  "pulida": "muy bien acabada, con atención al detalle",
-  "detallada": "cuidadosamente desarrollada",
-  "ordenada": "con una disposición clara y lógica",
-  "intuitiva": "fácil de usar sin instrucciones",
-  "sofisticada": "de diseño complejo pero elegante",
-  "personalizada": "adaptada a las necesidades del usuario",
-  "organica": "natural y fluida en su presentación",
-  "futurista": "con estética avanzada o tecnológica",
-  "versatil": "adecuada para múltiples usos o plataformas",
-  "compacta": "densa pero bien organizada",
-  "coherente": "consistente en estilo y estructura",
-  "rápida": "responde velozmente sin demoras",
-  "robusta": "resistente y bien construida",
-  "optimizada": "ajustada para obtener el mejor rendimiento",
-  "agradable": "placentera y fácil de usar",
-
-  // Negativos
-  "fea": "con una apariencia descuidada o anticuada",
-  "cutre": "de mala calidad o pobremente diseñada",
-  "horrible": "muy desagradable visualmente",
-  "desordenada": "sin estructura clara",
-  "caotica": "sin organización ni jerarquía visual",
-  "confusa": "difícil de entender o navegar",
-  "anticuada": "obsoleta y con estilo desactualizado",
-  "pasada": "fuera de moda o estándar",
-  "aburrida": "monótona y sin estímulos visuales",
-  "plana": "sin profundidad, textura ni variación",
-  "sobrecargada": "llena de elementos que distraen",
-  "recargada": "excesivamente adornada sin propósito",
-  "vaga": "poco definida y sin dirección",
-  "inconsistente": "con estilos o elementos que no combinan entre sí",
-  "ineficiente": "que no logra cumplir sus objetivos correctamente",
-  "lenta": "con bajo rendimiento o tiempos de carga largos",
-  "pesada": "con recursos excesivos o mal optimizada",
-  "inestable": "propensa a errores o mal funcionamiento",
-  "insegura": "que puede comprometer la privacidad o seguridad del usuario",
-  "molesta": "que causa incomodidad visual o funcional",
-  "incompleta": "que da la sensación de estar sin terminar",
-  "tosca": "poco refinada o con acabados deficientes",
-  "complicada": "difícil de usar o entender",
-  "repetitiva": "con elementos redundantes",
-  "pobre": "de calidad baja o poco desarrollada",
-  "gris": "sin vida, sin elementos que destaquen",
-  "apagada": "con colores o diseño sin energía",
-  "exagerada": "con elementos innecesariamente destacados",
-  "inútil": "sin un propósito o funcionalidad clara",
-  "engañosa": "puede inducir a error al usuario"
-};
-
-function stripRedundantKeywords(raw, keywords) {
-  let output = raw;
-  for (const word of keywords) {
-    const regex = new RegExp(`\\b${word}\\b`, 'gi');
-    output = output.replace(regex, '');
-  }
-  return output.replace(/\s{2,}/g, ' ').trim();
-}
-
-// 🔧 Limpia frases comunes, comparaciones vagas y ruido
-function cleanRaw(raw) {
-  return raw
-    .replace(/\b(hola|saludos|buenas\s*(tardes|noches|días)?|hey|qué tal|cómo\s*(estás|te va)|espero que estés bien|buen día|buenas)\b/gi, "")
-    .replace(/\b(haz|haces|haga|harás|haría|harías|harán|hacer|hice|hizo|hecho|crea|creas|cree|creen|crear|creó|crearon|crearía|crearán|genera|generas|generar|generó|generaron|generaría|genera|genera|dibuja|dibujas|dibuje|dibujes|dibujar|dibujó|dibujaría|escribe|escribes|escriba|escribas|escribir|escribió|escribieron|escribiría|redacta|redactas|redacte|redactes|redactar|redactó|redactaría|elabora|elaboras|elaborar|elaboró|elaboraría|desarrolla|desarrollas|desarrollar|desarrolló|construye|construyes|construir|construyó|realiza|realizas|realizar|realizó|organiza|organizas|organizar|organizó|prepara|preparas|preparar|preparó|activa|activas|activar|activó|usa|usas|use|usen|usar|usó|utiliza|utilizas|utilizar|utilizó|formula|formulas|formular|formuló|presenta|presentas|presentar|presentó|muestra|muestras|muestre|mostrar|mostró|diseña|diseñaras|diseñas|diseñe|diseñes|diseñar|diseñó|diseñaron|diseñaría|representa|representas|representar|representó|traduce|traduces|traducir|tradujo|convierte|conviertes|convertir|convirtió|transforma|transformas|transformar|transformó|describe|describes|describir|describió|automatiza|automatizar|automatizó|automatizaría|programa|programar|programó|programaría)\b/gi, "")
-    .replace(/\b(quiero|quisiera|me gustaría|me interesaría|necesito|podrías|puedes|deberías|tendrías|me podrías|me puedes|podría|sería|debería|intenta|prueba|ayúdame|ayuda|te pido|serías tan amable|indícame|enséñame|explícame|muéstrame|hazme|dame|di|recomiéndame|aconseja|cuéntame)\b/gi, "")
-    .replace(/\b(por favor|porfa|favor|gracias|muchas gracias|vale|ok|okey|venga|genial|perfecto|dale|listo|claro|bueno|eh|mmm|aja|ajá|ehh)\b/gi, "")
-    .replace(/\b(en general|básicamente|prácticamente|más o menos|algo así|más bien|sobre todo|en realidad|a veces|a menudo|de vez en cuando|usualmente|normalmente|frecuentemente|eventualmente|finalmente|generalmente|probablemente|quizás|quizá|tal vez|posiblemente|seguramente|nunca|siempre|más o menos|casi|aproximadamente|aprox|relativamente|medianamente|poco|mucho|demasiado|un poco|un tanto)\b/gi, "")
-    .replace(/\b(como si fuera|parecido a|similar a|en plan|tipo de|tipo|a lo mejor|algo así|más que nada|más que|menos que|lo típico|lo normal|lo común|lo usual|lo de siempre)\b/gi, "")
-    .replace(/\b(y|o|pero|aunque|además|también|mientras|sin embargo|porque|ya que|pues|entonces|luego|después|antes|cuando|donde|ya|sí|no|si|así que|por lo tanto|por consiguiente|por eso|de hecho|en cambio|por otro lado|entretanto|aun así)\b/gi, "")
-    .replace(/\b(el|la|los|las|un|una|unos|unas|esto|eso|aquello|ese|esa|aquel|aquella|mi|mis|tu|tus|su|sus|me|te|nos|vos|ellos|ellas|yo|tú|usted|ustedes|sí mismo|uno mismo|algo|nada|todo|cada|cualquiera|ninguno|algún|alguna|ningún|ninguna)\b/gi, "")
-    .replace(/\b(ser|estar|haber|tener|hacer|ir|venir|ver|decir|dar|poder|deber|saber|querer|pensar|parecer|sentir|pasar|quedar|llevar|dejar|seguir|encontrar|leer|escribir|funcionar|servir|entender|comprender|usar|existir|ocurrir|suceder|verbo)\b/gi, "")
-    .replace(/https?:\/\/[^\s]+/gi, "")
-    .replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/gi, "")
-    .replace(/\b\d+(\.\d+)?\b/g, "")
-    .replace(/[^a-zA-ZáéíóúñüÁÉÍÓÚÑÜ\s]/g, "")
-    .replace(/\b(\w+)\s+\1\b/gi, "$1")
-    .replace(/\s{2,}/g, " ")
-    .trim();
-}
-
-function expandAdjectives(txt) {
-  return txt.split(/\s+/).map(word => {
-    const norm = normalize(word);
-    return adjectiveExpansions[norm] || word;
-  }).join(" ");
-}
-
-const rawCleaned = cleanRaw(text);
-const normalizedText = normalize(rawCleaned);
-
-const categories = [
-  {
-    keywords: ["web", "html", "sitio", "pagina", "formulario", "frontend"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["pagina", "página", "web", ...["html", "sitio", "formulario", "frontend"]]);
-      const cleaned = expandAdjectives(stripped);
-      return `💻 *Prompt para desarrollo web:*\n\nDiseña una página web ${cleaned}. Asegúrate de que sea responsive, accesible y bien estructurada. Utiliza HTML, CSS y JavaScript.`;
-    }
-  },
-  {
-    keywords: ["imagen", "visual", "dibujo", "arte", "estilo", "ilustracion", "foto", "paisaje", "retrata"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["imagen", "dibujo", "ilustracion", "foto", "paisaje"]);
-      const cleaned = expandAdjectives(stripped);
-      return `🖼️ *Prompt para generador de imágenes:*\n\nGenera una imagen basada en esta descripción: ${cleaned}. Cuida iluminación, proporciones, composición y estilo artístico.`;
-    }
-  },
-  {
-    keywords: ["historia", "cuento", "relato", "ficcion", "personajes", "aventura"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["historia", "cuento", "relato", "ficcion"]);
-      return `📚 *Prompt para historia creativa:*\n\nEscribe una historia original basada en esta idea: ${stripped}. Incluye personajes interesantes, narrativa coherente y un desenlace sólido.`;
-    }
-  },
-  {
-    keywords: ["resumen", "resumir", "sintesis", "extracto", "resumas"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["resumen", "resumir", "sintesis", "extracto", "resumas"]);
-      return `📋 *Prompt para resumen de texto:*\n\nResume el siguiente contenido de forma clara y precisa: ${stripped}. Conserva los puntos clave y evita repeticiones innecesarias.`;
-    }
-  },
-  {
-    keywords: ["email", "correo", "mensaje", "formal", "respuesta", "responder", "respondas"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["email", "correo", "mensaje", "respuesta"]);
-      return `📧 *Prompt para redacción de email:*\n\nRedacta un correo formal con esta intención: ${stripped}. Usa un tono respetuoso, lenguaje profesional y estructura adecuada.`;
-    }
-  },
-  {
-    keywords: ["codigo", "script", "programa", "funcion", "algoritmo", "automatica", "automatizar", "programar"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["codigo", "script", "programa", "funcion", "algoritmo"]);
-      return `🧠 *Prompt para desarrollo de código:*\n\nCrea un script o programa que realice lo siguiente: ${stripped}. Asegúrate de usar buenas prácticas de programación y explicar cada sección del código.`;
-    }
-  },
-  {
-    keywords: ["poema", "poesía", "verso", "rima", "poeta"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["poema", "poesía", "verso"]);
-      return `🎭 *Prompt para poesía:*\n\nEscribe un poema sobre: ${stripped}. Utiliza un estilo evocador, buena métrica y tono emocional.`;
-    }
-  },
-  {
-    keywords: ["linkedin", "perfil", "publicación", "trabajo", "infojobs"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["linkedin", "perfil", "publicación"]);
-      return `💼 *Prompt para LinkedIn:*\n\nRedacta una publicación profesional para LinkedIn basada en: ${stripped}. Usa un tono formal y motivador.`;
-    }
-  },
-  {
-    keywords: ["cv", "curriculum", "hoja de vida"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["cv", "curriculum", "hoja de vida"]);
-      return `📄 *Prompt para CV:*\n\nGenera una sección del currículum que describa: ${stripped}. Utiliza un tono profesional y enfocado en logros.`;
-    }
-  },
-  {
-    keywords: ["pitch", "propuesta", "cliente", "inversionista"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["pitch", "propuesta", "cliente", "inversionista"]);
-      return `📢 *Prompt para propuesta/pitch:*\n\nRedacta una propuesta o pitch convincente sobre: ${stripped}. Incluye problema, solución y beneficios.`;
-    }
-  },
-  {
-    keywords: ["viaje", "itinerario", "destino", "turismo"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["viaje", "itinerario", "destino", "turismo"]);
-      return `✈️ *Prompt para plan de viaje:*\n\nCrea un itinerario turístico para: ${stripped}. Incluye lugares clave, horarios sugeridos y recomendaciones.`;
-    }
-  },
-  {
-    keywords: ["dashboard", "kpi", "metricas", "informe"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["dashboard", "kpi", "metricas", "informe"]);
-      return `📊 *Prompt para dashboard:*\n\nDiseña un dashboard con métricas clave para: ${stripped}. Asegúrate de representar datos relevantes de forma visual.`;
-    }
-  },
-  {
-    keywords: ["latex", "ecuacion", "formula"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["latex", "ecuacion", "formula"]);
-      return `📐 *Prompt LaTeX:*\n\nEscribe la fórmula en LaTeX que representa: ${stripped}.`;
-    }
-  },
-  {
-    keywords: ["yaml", "configuracion", "config", "archivo"],
-    prompt: (raw) => {
-      const stripped = stripRedundantKeywords(raw, ["yaml", "configuracion", "config", "archivo"]);
-      return `🛠️ *Prompt para YAML/config:*\n\nConvierte lo siguiente en una configuración YAML bien estructurada: ${stripped}.`;
-    }
-  },
-  {
-  keywords: ["análisis", "analisis", "estudio", "investigación", "examina", "evaluación", "revisión", "reporte", "examinar"],
-  prompt: (raw) => {
-    const stripped = stripRedundantKeywords(raw, ["análisis", "analisis", "estudio", "investigación", "evaluación", "revisión", "reporte"]);
-    const cleaned = expandAdjectives(stripped).replace(/^de(l)?\s+/i, ""); // elimina un "del"/"de" inicial si lo hay
-    return `🔍 *Prompt para análisis o estudio:*\n\nRealiza un análisis detallado sobre: ${cleaned}. Incluye observaciones relevantes, posibles conclusiones y, si es pertinente, gráficos o comparativas.`;
-  }
-},
-{
-  keywords: ["texto", "desarrolla", "explica", "describe", "escribe", "redacta", "parrafo", "contenido", "tema", "hazme", "elabora"],
-  prompt: (raw) => {
-    const stripped = stripRedundantKeywords(raw, ["texto", "desarrolla", "explica", "describe", "escribe", "redacta", "parrafo", "contenido", "tema", "hazme", "elabora", "sobre"]);
-    return `✍️ *Prompt para desarrollo de texto:*\n\nEscribe un texto claro y detallado sobre: ${stripped}. Asegúrate de que sea coherente, bien estructurado y relevante al tema.`;
-  }
-}
-];
-
-  for (const category of categories) {
-    if (category.keywords.some(keyword => normalizedText.includes(normalize(keyword)))) {
-    return category.prompt(rawCleaned);
-  }
-}
-
-// Si no se detecta ningún tema conocido
-return `🤔 *No se ha detectado un tema específico:*\n\nAsegurate de que no hay faltas de ortografía e intenta reformular la idea usando palabras clave más claras o específicas.\nPor ejemplo: "crear una página web de recetas", "resumir un artículo", "generar una imagen de un dragón en el espacio", etc.`;
-  }
-</script>
 </body>
 </html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mejores IAs por Categoría</title>
+  <link rel="icon" href="https://i.imgur.com/efDFIrP.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 100px;
+    }
+
+    header {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .logo {
+      width: 140px;
+      border-radius: 20px;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    h1 {
+      margin-top: 1rem;
+      font-size: 1.8rem;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .category {
+      margin: 2rem auto;
+      width: 90%;
+      max-width: 1000px;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .category h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+      padding-bottom: 0.5rem;
+    }
+
+    .top-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .ia-card {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 1rem;
+      text-align: center;
+      width: 160px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .ia-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .ia-card img {
+      width: 100%;
+      height: auto;
+      max-height: 80px;
+      object-fit: contain;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+    }
+
+    .ia-card span {
+      font-size: 0.95rem;
+      display: block;
+    }
+
+    footer {
+      background-color: #2d3748;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 14px;
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .ia-card {
+        width: 120px;
+      }
+
+      .ia-card img {
+        max-height: 60px;
+      }
+
+      h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="https://i.imgur.com/Au9XUJn.png" alt="Logo Nexora" class="logo" />
+    <h1>Mejores IAs por Categoría</h1>
+  </header>
+
+  <!-- Generación de texto -->
+  <section class="category">
+    <h2>✍️ Generar texto</h2>
+    <div class="top-list">
+      <a href="https://chat.openai.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" />
+          <span>ChatGPT</span>
+        </div>
+      </a>
+      <a href="https://claude.ai" target="_blank">
+        <div class="ia-card">
+          <img src="https://thvnext.bing.com/th/id/OIP.C49uVJfP_8hQrhoSjEhnTAHaHa?cb=thvnext&rs=1&pid=ImgDetMain" alt="Claude" />
+          <span>Claude</span>
+        </div>
+      </a>
+      <a href="https://gemini.google.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://1000logos.net/wp-content/uploads/2024/02/Gemini-Logo.png" alt="Gemini" />
+          <span>Gemini</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Análisis -->
+  <section class="category">
+    <h2>📊 Análisis</h2>
+    <div class="top-list">
+      <a href="https://chat.openai.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" />
+          <span>ChatGPT</span>
+        </div>
+      </a>
+      <a href="https://claude.ai" target="_blank">
+        <div class="ia-card">
+          <img src="https://thvnext.bing.com/th/id/OIP.C49uVJfP_8hQrhoSjEhnTAHaHa?cb=thvnext&rs=1&pid=ImgDetMain" alt="Claude" />
+          <span>Claude</span>
+        </div>
+      </a>
+      <a href="https://www.notion.so/ai" target="_blank">
+        <div class="ia-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" alt="Notion AI" />
+          <span>Notion AI</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Investigación -->
+  <section class="category">
+    <h2>🔍 Investigación</h2>
+    <div class="top-list">
+      <a href="https://www.perplexity.ai" target="_blank">
+        <div class="ia-card">
+          <img src="https://thvnext.bing.com/th/id/OIP.j_46DDENRisOFr1rg6LiOAHaHa?cb=thvnext&rs=1&pid=ImgDetMain" alt="Perplexity" />
+          <span>Perplexity</span>
+        </div>
+      </a>
+      <a href="https://chat.openai.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" />
+          <span>ChatGPT</span>
+        </div>
+      </a>
+      <a href="https://elicit.org" target="_blank">
+        <div class="ia-card">
+          <img src="https://blog.elicit.com/content/images/2025/01/Elicit-Logo-01-2.png" alt="Elicit" />
+          <span>Elicit</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Explicación -->
+  <section class="category">
+    <h2>💡 Explicación</h2>
+    <div class="top-list">
+      <a href="https://chat.openai.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" />
+          <span>ChatGPT</span>
+        </div>
+      </a>
+      <a href="https://you.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://fullstackdeeplearning.com/images/logo-you.com.png" alt="You.com" />
+          <span>You.com</span>
+        </div>
+      </a>
+      <a href="https://socratic.org" target="_blank">
+        <div class="ia-card">
+          <img src="https://www.bestaitools.com/wp-content/uploads/2023/07/socratic-square.png" alt="Socratic" />
+          <span>Socratic</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Razonamiento -->
+  <section class="category">
+    <h2>🧠 Razonamiento</h2>
+    <div class="top-list">
+      <a href="https://claude.ai" target="_blank">
+        <div class="ia-card">
+          <img src="https://thvnext.bing.com/th/id/OIP.C49uVJfP_8hQrhoSjEhnTAHaHa?cb=thvnext&rs=1&pid=ImgDetMain" alt="Claude" />
+          <span>Claude</span>
+        </div>
+      </a>
+      <a href="https://chat.openai.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" />
+          <span>ChatGPT</span>
+        </div>
+      </a>
+      <a href="https://pi.ai" target="_blank">
+        <div class="ia-card">
+          <img src="https://s6-recruiting.cdn.greenhouse.io/job_board_renderer/job_board_configurations/banners/400/015/400/original/Inflection_Logo_Lines_2colordark_transparent_4x.png?1727132107" alt="Pi" />
+          <span>Pi</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Creatividad -->
+  <section class="category">
+    <h2>🎨 Creatividad</h2>
+    <div class="top-list">
+      <a href="https://www.notion.so/ai" target="_blank">
+        <div class="ia-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" alt="Notion AI" />
+          <span>Notion AI</span>
+        </div>
+      </a>
+      <a href="https://www.jasper.ai" target="_blank">
+        <div class="ia-card">
+          <img src="https://th.bing.com/th/id/R.9e16ab4ee010e63f200df6c5095e9ac3?rik=yuWbY78SQWXQag&pid=ImgRaw&r=0" alt="Jasper" />
+          <span>Jasper</span>
+        </div>
+      </a>
+      <a href="https://chat.openai.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" />
+          <span>ChatGPT</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Programación y Estudio -->
+  <section class="category">
+    <h2>👨‍💻 Programación</h2>
+    <div class="top-list">
+      <a href="https://github.com/features/copilot" target="_blank">
+        <div class="ia-card">
+          <img src="https://logos-world.net/wp-content/uploads/2023/10/Microsoft-Copilot-Logo.png" alt="Copilot" />
+          <span>Copilot</span>
+        </div>
+      </a>
+      <a href="https://replit.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://cdn.sanity.io/images/bj34pdbp/migration/7d06c37d899d8ba6419b2a9484dfe44586e70081-794x872.png" alt="Replit AI" />
+          <span>Replit AI</span>
+        </div>
+      </a>
+      <a href="https://chat.openai.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" />
+          <span>ChatGPT</span>
+        </div>
+      </a>
+    </div>
+
+    <h2>🎓 Estudio / Aprendizaje</h2>
+    <div class="top-list">
+      <a href="https://socratic.org" target="_blank">
+        <div class="ia-card">
+          <img src="https://www.bestaitools.com/wp-content/uploads/2023/07/socratic-square.png" alt="Socratic" />
+          <span>Socratic</span>
+        </div>
+      </a>
+      <a href="https://quizlet.com/features/magic-notes" target="_blank">
+        <div class="ia-card">
+          <img src="https://quizlet.com/favicon.ico" alt="Quizlet AI" />
+          <span>Quizlet AI</span>
+        </div>
+      </a>
+      <a href="https://chat.openai.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" />
+          <span>ChatGPT</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Resumen -->
+  <section class="category">
+    <h2>📝 Resumir textos</h2>
+    <div class="top-list">
+      <a href="https://www.jasper.ai" target="_blank">
+        <div class="ia-card">
+          <img src="https://th.bing.com/th/id/R.9e16ab4ee010e63f200df6c5095e9ac3?rik=yuWbY78SQWXQag&pid=ImgRaw&r=0" alt="Jasper" />
+          <span>Jasper</span>
+        </div>
+      </a>
+      <a href="https://quillbot.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://1000logos.net/wp-content/uploads/2023/11/QuillBot-Logo-2017.png" alt="Quillbot" />
+          <span>Quillbot</span>
+        </div>
+      </a>
+      <a href="https://chat.openai.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" />
+          <span>ChatGPT</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Generar imágenes -->
+  <section class="category">
+    <h2>🖼️ Generar imágenes</h2>
+    <div class="top-list">
+      <a href="https://openai.com/sora" target="_blank">
+        <div class="ia-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="DALL·E / Sora" />
+          <span>DALL·E / Sora</span>
+        </div>
+      </a>
+      <a href="https://www.midjourney.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://thvnext.bing.com/th/id/OIP.NGyj677qi24rtdapk3-q3QHaHa?cb=thvnext&rs=1&pid=ImgDetMain" alt="Midjourney" />
+          <span>Midjourney</span>
+        </div>
+      </a>
+      <a href="https://stablediffusionweb.com" target="_blank">
+        <div class="ia-card">
+          <img src="https://thvnext.bing.com/th/id/OIP.UtCV2S4t8gvVbL7gD5wtVgAAAA?cb=thvnext&rs=1&pid=ImgDetMain" alt="Stable Diffusion" />
+          <span>Stable Diffusion</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Nexora. Todos los derechos reservados. | <a href="#">Política de privacidad</a> | <a href="#">Términos y condiciones</a>
+  </footer>
+</body>
+</html>
