@@ -584,21 +584,18 @@ function cleanRaw(raw) {
   return raw
     // saludos y cortesías
     .replace(/\b(hola|saludos|buenas\s*(tardes|noches|días)?|hey|qué tal|cómo\s*(estás|te va)|espero que estés bien|buen día|buenas)\b/gi, "")
-    // verbos comunes para pedir acciones
-    .replace(/\b(haz|haces|haga|harás|haría|harías|harán|hacer|hice|hizo|hecho|crea|creas|cree|creen|crear|creó|crearon|crearía|crearán|genera|generas|generar|generó|generaron|generaría|dibuja|dibujas|dibuje|dibujes|dibujar|dibujó|dibujaría|escribe|escribes|escriba|escribas|escribir|escribió|escribieron|escribiría|redacta|redactas|redacte|redactes|redactar|redactó|redactaría|elabora|elaboras|elaborar|elaboró|elaboraría|desarrolla|desarrollas|desarrollar|desarrolló|construye|construyes|construir|construyó|realiza|realizas|realizar|realizó|organiza|organizas|organizar|organizó|prepara|preparas|preparar|preparó|activa|activas|activar|activó|usa|usas|use|usen|usar|usó|utiliza|utilizas|utilizar|utilizó|formula|formulas|formular|formuló|presenta|presentas|presentar|presentó|muestra|muestras|muestre|mostrar|mostró|diseña|diseñaras|diseñas|diseñe|diseñes|diseñar|diseñó|diseñaron|diseñaría|representa|representas|representar|representó|traduce|traduces|traducir|tradujo|convierte|conviertes|convertir|convirtió|transforma|transformas|transformar|transformó|describe|describes|describir|describió|automatiza|automatizar|automatizó|automatizaría|programa|programar|programó|programaría|resume|resumes|resumir|resumió|resumió|resumido|resuma|resumen|resumeme|resúmeme|resúmelo|resúmela|resúmanlo|pasame|pásame|pásamelo|pásamela|dame|dáme|dámelo|dámela|cuéntame|cuentame|explícame|explicame|indícame|indicame|muéstrame|muestrame|ayúdame|ayudame|recomiéndame|recomiendame|aconseja|aconsejame|sugiere|sugiéreme|sugiereme|mándame|mandame|pídeme|pideme|pásame|pasamelo|pásamelo|pásamela)\b/gi, "")
     // expresiones de cortesía o agradecimiento
-    .replace(/\b(quiero|quisiera|me gustaría|me interesaría|necesito|podrías|puedes|deberías|tendrías|me podrías|me puedes|podría|sería|debería|intenta|prueba|ayúdame|ayuda|te pido|serías tan amable|indícame|enséñame|explícame|muéstrame|hazme|dame|di|recomiéndame|aconseja|cuéntame)\b/gi, "")
-    .replace(/\b(por favor|porfa|favor|gracias|muchas gracias|vale|ok|okey|venga|genial|perfecto|dale|listo|claro|bueno|eh|mmm|aja|ajá|ehh)\b/gi, "")
+    .replace(/\b(por favor|porfa|favor|gracias|muchas gracias|vale|ok|okey|venga|genial|perfecto|dale|listo|claro|bueno|eh|mmm|aja|ajá|ehh|serías tan amable)\b/gi, "")
     // muletillas y expresiones vagas
-    .replace(/\b(en general|básicamente|prácticamente|más o menos|algo así|más bien|sobre todo|en realidad|a veces|a menudo|de vez en cuando|usualmente|normalmente|frecuentemente|eventualmente|finalmente|generalmente|probablemente|quizás|quizá|tal vez|posiblemente|seguramente|nunca|siempre|más o menos|casi|aproximadamente|aprox|relativamente|medianamente|poco|mucho|demasiado|un poco|un tanto)\b/gi, "")
+    .replace(/\b(en general|básicamente|prácticamente|más o menos|algo así|más bien|sobre todo|en realidad|a veces|a menudo|de vez en cuando|usualmente|normalmente|frecuentemente|eventualmente|finalmente|generalmente|probablemente|quizás|quizá|tal vez|posiblemente|seguramente|nunca|siempre|casi|aproximadamente|aprox|relativamente|medianamente|poco|mucho|demasiado|un poco|un tanto)\b/gi, "")
     // expresiones comparativas o coloquiales
     .replace(/\b(como si fuera|parecido a|similar a|en plan|tipo de|tipo|a lo mejor|algo así|más que nada|más que|menos que|lo típico|lo normal|lo común|lo usual|lo de siempre)\b/gi, "")
     // conjunciones y conectores
     .replace(/\b(y|o|pero|aunque|además|también|mientras|sin embargo|porque|ya que|pues|entonces|luego|después|antes|cuando|donde|ya|sí|no|si|así que|por lo tanto|por consiguiente|por eso|de hecho|en cambio|por otro lado|entretanto|aun así)\b/gi, "")
     // artículos, pronombres y determinantes
     .replace(/\b(el|la|los|las|un|una|unos|unas|esto|eso|aquello|ese|esa|aquel|aquella|mi|mis|tu|tus|su|sus|me|te|nos|vos|ellos|ellas|yo|tú|usted|ustedes|sí mismo|uno mismo|algo|nada|todo|cada|cualquiera|ninguno|algún|alguna|ningún|ninguna)\b/gi, "")
-    // verbos auxiliares comunes y verbos generales
-    .replace(/\b(ser|estar|haber|tener|hacer|ir|venir|ver|decir|dar|poder|deber|saber|querer|pensar|parecer|sentir|pasar|quedar|llevar|dejar|seguir|encontrar|leer|escribir|funcionar|servir|entender|comprender|usar|existir|ocurrir|suceder|verbo)\b/gi, "")
+    // verbos auxiliares comunes, imperativos y comandos genéricos
+    .replace(/\b(ser|estar|haber|tener|ir|venir|ver|decir|dar|poder|deber|saber|querer|pensar|parecer|sentir|pasar|quedar|llevar|dejar|seguir|encontrar|leer|funcionar|servir|entender|comprender|existir|ocurrir|suceder|haz|hazme|hazlo|dame|dame|pon|ponme|pasa|pásame|mira|mírala|tráeme|trae|coge|cógelo|toma|tómalo|di|dímelo|graba|abre|ciérralo|dibuja|escribe|crea|genera|programa|redacta|describe)\b/gi, "")
     // URLs y correos
     .replace(/https?:\/\/[^\s]+/gi, "")
     .replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/gi, "")
