@@ -1,125 +1,146 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Roles para IA</title>
-  <link rel="icon" type="image/png" href="https://i.imgur.com/efDFIrP.png">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/efDFIrP.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet"/>
 
   <style>
-  body {
-    font-family: 'Orbitron', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-  .logo {
-    display: block;
-    margin: 2rem auto 1rem;
-    max-width: 160px;
-  }
+    .logo {
+      display: block;
+      margin: 2rem auto 1rem;
+      max-width: 160px;
+    }
 
-  .container {
-    flex: 1;
-    width: 90%;
-    max-width: 800px;
-    margin: 1rem auto 2rem;
-    background: linear-gradient(135deg, #e3e9f7, #e7e4f2);
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  }
-
-  h1 {
-    text-align: center;
-    color: #3c366b;
-    font-size: 1.8rem;
-    font-weight: 700;
-  }
-
-  input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 1rem;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 15px;
-    font-family: 'Orbitron', sans-serif;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    max-height: 300px;
-    overflow-y: auto;
-  }
-
-  li {
-    background: #f1f4fb;
-    margin-bottom: 8px;
-    padding: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-
-  li:hover {
-    background: #d3defa;
-  }
-
-  .copied {
-    background-color: #c6f6d5 !important;
-  }
-
-  footer {
-    background-color: #2d3748;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    font-size: 14px;
-  }
-
-  footer a {
-    color: #90cdf4;
-    text-decoration: none;
-  }
-
-  footer a:hover {
-    text-decoration: underline;
-  }
-
-  @media (max-width: 480px) {
     .container {
-      width: 95%;
-      padding: 1.2rem;
+      flex: 1;
+      width: 90%;
+      max-width: 800px;
+      margin: 1rem auto 2rem;
+      background: linear-gradient(135deg, #e3e9f7, #e7e4f2);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      position: relative;
     }
 
     h1 {
-      font-size: 1.6rem;
+      text-align: center;
+      color: #3c366b;
+      font-size: 1.8rem;
+      font-weight: 700;
     }
 
     input[type="text"] {
-      font-size: 14px;
-      padding: 10px;
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      font-family: 'Orbitron', sans-serif;
     }
-  }
-</style>
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    li {
+      background: #f1f4fb;
+      margin-bottom: 8px;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    li:hover {
+      background: #d3defa;
+    }
+
+    li.copied {
+      background-color: #c6f6d5 !important;
+    }
+
+    .tooltip {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background-color: #38a169;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    li.show-tooltip .tooltip {
+      opacity: 1;
+    }
+
+    footer {
+      background-color: #2d3748;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #90cdf4;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: 95%;
+        padding: 1.2rem;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      input[type="text"] {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <img src="https://i.imgur.com/Au9XUJn.png" alt="Logo" class="logo">
+  <img src="https://i.imgur.com/Au9XUJn.png" alt="Logo" class="logo" />
 
   <div class="container">
     <h1>🎭 Selecciona un rol para la IA</h1>
-    <input type="text" id="roleSearch" placeholder="Buscar rol (ej: diseñador, abogado...)">
-
+    <input type="text" id="roleSearch" placeholder="Buscar rol (ej: diseñador, abogado...)" />
     <ul id="roleList"></ul>
   </div>
-  <!-- Botón fuera del container -->
+
   <div style="text-align: center; margin-bottom: 2rem;">
     <button onclick="window.location.href='index.html'" style="
       font-family: 'Orbitron', sans-serif;
@@ -133,11 +154,13 @@
       font-weight: 600;
       transition: background 0.3s;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    " onmouseover="this.style.background='linear-gradient(to right, #764ba2, #667eea)'" 
-       onmouseout="this.style.background='linear-gradient(to right, #667eea, #764ba2)'">
+    " 
+    onmouseover="this.style.background='linear-gradient(to right, #764ba2, #667eea)'" 
+    onmouseout="this.style.background='linear-gradient(to right, #667eea, #764ba2)'">
       ⬅️ Volver
     </button>
   </div>
+
   <footer>
     © 2025 Nexora. Todos los derechos reservados. | <a href="#">Política de privacidad</a> | <a href="#">Términos y condiciones</a>
   </footer>
@@ -430,33 +453,44 @@
   }
 ];
 
-
     const roleList = document.getElementById("roleList");
-    const roleSearch = document.getElementById("roleSearch");
+    const searchInput = document.getElementById("roleSearch");
 
-    function renderRoles(filteredRoles) {
+    function showRoles(filteredRoles) {
       roleList.innerHTML = "";
       filteredRoles.forEach(role => {
         const li = document.createElement("li");
         li.textContent = role.nombre;
-        li.title = role.prompt;
-        li.addEventListener("click", () => {
-          navigator.clipboard.writeText(role.prompt).then(() => {
-            li.classList.add("copied");
-            setTimeout(() => li.classList.remove("copied"), 1500);
-          });
-        });
+
+        // Tooltip span
+        const tooltip = document.createElement("span");
+        tooltip.className = "tooltip";
+        tooltip.textContent = "¡Copiado!";
+        li.appendChild(tooltip);
+
+        li.onclick = () => {
+          navigator.clipboard.writeText(role.prompt)
+            .then(() => {
+              li.classList.add("copied");
+              li.classList.add("show-tooltip");
+              setTimeout(() => {
+                li.classList.remove("copied");
+                li.classList.remove("show-tooltip");
+              }, 2000);
+            });
+        };
+
         roleList.appendChild(li);
       });
     }
 
-    roleSearch.addEventListener("input", () => {
-      const value = roleSearch.value.toLowerCase();
-      const filtered = roles.filter(r => r.nombre.toLowerCase().includes(value));
-      renderRoles(filtered);
-    });
+    showRoles(roles);
 
-    renderRoles(roles);
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase();
+      const filtered = roles.filter(role => role.nombre.toLowerCase().includes(query));
+      showRoles(filtered);
+    });
   </script>
 </body>
 </html>
